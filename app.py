@@ -1,8 +1,7 @@
 import os
-from boto.S3.connection import S3Connection
 import requests as rs
 import pandas as pd
-import json
+#import json
 import streamlit as st
 import plotly.express as px
 
@@ -10,11 +9,11 @@ import plotly.express as px
 st.sidebar.subheader('Select ticker symbol')
 ticker = st.sidebar.text_input('Ticker symbol e.g TSLA')
 
-s3 = S3Connection(os.environ['KEY'])
+key = os.environ.get('KEY')
 
 if ticker != '':
 
-    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&outputsize=full&apikey={s3}'
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker}&outputsize=full&apikey={key}'
 
     r = rs.get(url)
     data = r.json()
