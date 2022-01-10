@@ -6,3 +6,5 @@ altair
 bokeh
 requests
 json
+os
+boto
